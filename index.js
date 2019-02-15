@@ -1,6 +1,7 @@
 'use strict';
 var mysql = require('mysql');
 var async = require('async');
+var cluster = require('cluster');
 var http = require('http');
 var express = require('express');
 // var json = require("json");
@@ -14,6 +15,40 @@ const csvHeaders = require('csv-headers');
 const leftpad    = require('leftpad');
 
 
+
+var numCPUs = 1;
+
+if (cluster.isMaster) {
+    var numWorkers = require('os').cpus().length;
+    console.log('Master cluster setting up ' + numWorkers + ' workers...');
+
+    for(var i = 0; i < numWorkers; i++) {
+        cluster.fork();
+    }
+    cluster.on('online', function(worker) {
+        console.log('Worker ' + worker.process.pid + ' is online');
+    });
+
+    cluster.on('exit', function(worker, code, signal) {
+        console.log('Worker ' + worker.process.pid + ' died with code: ' + code + ', and signal: ' + signal);
+        console.log('Starting a new worker');
+        cluster.fork();
+    });
+} else {
+    var app = require('express')();
+    app.all('/*', function(req, res) {res.send('process ' + process.pid + ' says hello!').end();})
+
+    var server = app.listen(8000, function() {
+        console.log('Process ' + process.pid + ' is listening to all incoming requests');
+    });
+}
+// } else {
+//     http.createServer(function(req, res) {
+//         res.writeHead(200);
+//         res.end('process ' + process.pid + ' says hello!');
+//         console.log('process ' + process.pid + ' says hello!');
+//     }).listen(8000);
+// }
 
 
 
