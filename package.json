@@ -18,14 +18,17 @@
   "homepage": "https://github.com/aarshic/Collect#readme",
   "dependencies": {
     "async": "^2.6.2",
+    "body-parser": "^1.18.3",
     "cluster": "^0.7.7",
     "csv-headers": "^1.0.0",
     "csv-parse": "^4.3.3",
     "express": "^4.16.4",
+    "fast-csv": "^2.4.1",
     "json": "^9.0.6",
     "leftpad": "0.0.1",
     "mysql": "^2.16.0",
     "nodemon": "^1.18.10",
+    "readline-sync": "^1.4.9",
     "request": "^2.88.0",
     "worker-queue": "^0.1.1"
   }
