@@ -1,21 +1,22 @@
 {
-  "name": "collect",
+  "name": "socialcops",
   "version": "1.0.0",
   "description": "Collect has a variety of long-running tasks which require time and resources on the servers. As it stands now, once we have triggered off a long-running task, there is no way to tap into it and pause/stop/terminate the task, upon realizing that an erroneous request went through from one of the clients (mostly web or pipeline).",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aarshic/Collect.git"
+    "url": "git+https://github.com/aarshic/SocialCops.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/aarshic/Collect/issues"
+    "url": "https://github.com/aarshic/SocialCops/issues"
   },
-  "homepage": "https://github.com/aarshic/Collect#readme",
+  "homepage": "https://github.com/aarshic/SocialCops#readme",
   "dependencies": {
     "async": "^2.6.2",
     "body-parser": "^1.18.3",
@@ -29,7 +30,6 @@
     "mysql": "^2.16.0",
     "nodemon": "^1.18.10",
     "readline-sync": "^1.4.9",
-    "request": "^2.88.0",
     "worker-queue": "^0.1.1"
   }
 }
